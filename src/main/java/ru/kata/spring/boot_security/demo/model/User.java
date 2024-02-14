@@ -2,6 +2,7 @@ package ru.kata.spring.boot_security.demo.model;
 
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "users")
@@ -14,14 +15,22 @@ public class User {
     private String name;
     @Column(name = "surname")
     private String surname;
+    @Column(name = "password")
+    private String password;
+    @ManyToMany
+    @JoinTable(name = "user_roles",
+    joinColumns = @JoinColumn(name = "user_id"),
+    inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Collection<Role> roles;
 
     public User() {
 
     }
 
-    public User(String name, String surname) {
+    public User(String name, String surname, String password) {
         this.name = name;
         this.surname = surname;
+        this.password = password;
     }
 
     public int getId() {
@@ -48,4 +57,11 @@ public class User {
         this.surname = surname;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

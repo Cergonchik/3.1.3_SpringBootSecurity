@@ -23,7 +23,7 @@ public class UserController {
         this.userService = usersService;
     }
 
-    @RequestMapping(value = "/")                            //index
+    @GetMapping(value = "/")                            //index
     public String getAllUsers(Model model) {
         List<User> allUsers = userService.getAllUsers();
         model.addAttribute("allUsers", allUsers);
@@ -74,6 +74,22 @@ public class UserController {
         }
 
         return "redirect:/";
+    }
+    //-------------------------------------------user
+    @GetMapping("/user")
+    public String getUser(Model model) {
+        model.addAttribute("userS", new User());
+        return "user";
+    }
+    @PostMapping("/user")
+    public String getUserShow(@ModelAttribute("userS") User user) {
+        try {
+            userService.getUser(user.getId());
+        } catch (Exception e) {
+            System.out.println("No this user!");
+        }
+
+        return "user";
     }
 
 }

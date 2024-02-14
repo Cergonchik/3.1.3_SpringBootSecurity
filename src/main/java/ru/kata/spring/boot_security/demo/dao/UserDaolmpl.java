@@ -36,6 +36,7 @@ public class UserDaolmpl implements UserDao {
         User user = getUser(id);
         user.setName(userUpdate.getName());
         user.setSurname(userUpdate.getSurname());
+        user.setPassword(userUpdate.getPassword());
         entityManager.merge(user);
     }
 
