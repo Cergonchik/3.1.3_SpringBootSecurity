@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<form th:method="POST" th:action="@{/update_user}" th:object="${userU}" >
+<form th:method="POST" th:action="@{/admin/update_user}" th:object="${userU}" >
     <label for="id">Enter id who you want update: </label>
     <input type="number" th:field="*{id}" id="id">
     <br/>
@@ -27,7 +27,7 @@
 </form>
 <br>
 
-<form th:action="@{/}" th:method="GET" >
+<form th:action="@{/admin/all_users}" th:method="GET" >
     <button type="submit">All user</button>
 </form>
 

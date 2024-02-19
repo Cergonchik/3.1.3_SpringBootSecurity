@@ -1,39 +1,50 @@
 package ru.kata.spring.boot_security.demo.model;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "roles")
-public class Role {
+public class Role implements GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idRole")
-    private int idRole;
+    @Column(name = "id")
+    private int id;
 
-    @Column(name = "nameRole")
-    private String nameRole;
+    @Column(name = "name")
+    private String name;
+
+    /*@ManyToMany(mappedBy = "roles")
+    private Set<User> userSet;*/
 
     public Role() {
     }
 
-    public Role(String nameRole) {
-        this.nameRole = nameRole;
+    public Role(String name) {
+        this.name = name;
     }
 
-    public int getIdRole() {
-        return idRole;
+    public int getId() {
+        return id;
     }
 
-    public void setIdRole(int idRole) {
-        this.idRole = idRole;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getNameRole() {
-        return nameRole;
+    public String getName() {
+        return name;
     }
 
-    public void setNameRole(String nameRole) {
-        this.nameRole = nameRole;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String getAuthority() {
+        return name;
     }
 }

@@ -7,17 +7,22 @@
 <body>
 
 <br>
-<form th:action="@{/creat_user}" th:method="GET">
+<form th:action="@{/admin/creat_user}" th:method="GET">
     <button type="submit">Add user </button>
 </form>
-<form th:action="@{/update_user}" th:method="GET">
+<form th:action="@{/admin/update_user}" th:method="GET">
     <button type="submit"> Update user </button>
 </form>
-<form th:action="@{/delete_user}" th:method="GET" >
+<form th:action="@{/admin/delete_user}" th:method="GET" >
     <button type="submit">Delete user</button>
 </form>
+
 <form th:action="@{/user}" th:method="GET" >
     <button type="submit">Show user</button>
+</form>
+
+<form th:action="@{/logout}" th:method="GET" >
+    <button type="submit">Logout</button>
 </form>
 
 <br>
@@ -28,6 +33,7 @@
         <th>ID</th>
         <th>Name</th>
         <th>Surname</th>
+        <th>Password</th>
     </tr>
     <br/>
 
@@ -35,6 +41,7 @@
         <td th:text="${u.getId()}"></td>
         <td th:text="${u.getName()}"></td>
         <td th:text="${u.getSurname()}"></td>
+        <td th:text="${u.getPassword()}"></td>
     </tr>
 
 </table>

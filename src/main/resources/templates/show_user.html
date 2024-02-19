@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>This is you</title>
+</head>
+<body>
+
+<table border="2">User
+    <br/>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Password</th>
+    </tr>
+    <br/>
+
+    <tr th:each="u : ${userS}">
+        <td th:text="${u.getId()}"></td>
+        <td th:text="${u.getName()}"></td>
+        <td th:text="${u.getSurname()}"></td>
+        <td th:text="${u.getPassword()}"></td>
+    </tr>
+
+</table>
+
+<form th:action="@{/logout}" th:method="GET" >
+    <button type="submit">Logout</button>
+</form>
+
+</body>
+</html>
