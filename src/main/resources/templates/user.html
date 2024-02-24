@@ -7,14 +7,12 @@
 <h1>User, welcome spring boot security page!</h1>
 
 <form th:method="POST" th:action="@{/user}" th:object="${userS}" >
-    <label for="id">Enter ID: </label>
-    <input type="number" th:field="*{id}" id="id">
-    <br/>
-
-
     <input type="submit" value="Show user!">
 </form>
 <br>
+<form th:action="@{/logout}" th:method="GET" >
+    <button type="submit">Logout</button>
+</form>
 
 
 </body>

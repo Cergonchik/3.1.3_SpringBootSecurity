@@ -14,10 +14,8 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @Column(name = "name")
-    private String name;
-    @Column(name = "surname")
-    private String surname;
+    @Column(name = "username")
+    private String username;
     @Column(name = "password")
     private String password;
     @ManyToMany(fetch = FetchType.LAZY)
@@ -30,9 +28,8 @@ public class User implements UserDetails {
 
     }
 
-    public User(String name, String surname, String password, Collection<Role> roles) {
-        this.name = name;
-        this.surname = surname;
+    public User(String username, String password, Collection<Role> roles) {
+        this.username = username;
         this.password = password;
         this.roles = roles;
     }
@@ -45,20 +42,8 @@ public class User implements UserDetails {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @Override
@@ -72,7 +57,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return name;
+        return username;
     }
 
     @Override

@@ -17,31 +17,11 @@ public class Role implements GrantedAuthority {
     @Column(name = "name")
     private String name;
 
-    /*@ManyToMany(mappedBy = "roles")
-    private Set<User> userSet;*/
 
     public Role() {
     }
 
-    public Role(String name) {
-        this.name = name;
-    }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     @Override
     public String getAuthority() {
