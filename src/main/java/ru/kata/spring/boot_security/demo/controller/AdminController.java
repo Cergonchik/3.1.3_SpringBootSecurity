@@ -1,15 +1,21 @@
 package ru.kata.spring.boot_security.demo.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import ru.kata.spring.boot_security.demo.dao.RoleRepository;
+import ru.kata.spring.boot_security.demo.model.Role;
+import ru.kata.spring.boot_security.demo.model.User;
+import ru.kata.spring.boot_security.demo.servise.UserService;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class AdminController {
+    private RoleRepository roleRepository;
+    private UserService userService;
+
     @GetMapping(value = "/admin/all_users")
     public String getAllUsers(Principal principal) {
         System.out.println("Info " + principal.getName());
@@ -17,7 +23,9 @@ public class AdminController {
         return "all_users";
     }
     //------------------------------  creat
-    @GetMapping("/admin/creat_user")
+
+
+    /*@GetMapping("/admin/creat_user")
     public String getCreatUser() {
 
         return "creat_user";
@@ -53,7 +61,7 @@ public class AdminController {
 
 
         return "redirect:/all_users";
-    }
+    }*/
 
 
 }

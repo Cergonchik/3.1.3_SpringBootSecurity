@@ -18,9 +18,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private  UserService userService;
 
 
-    public WebSecurityConfig(SuccessUserHandler successUserHandler) {
+    public WebSecurityConfig(SuccessUserHandler successUserHandler, UserService userService) {
         this.successUserHandler = successUserHandler;
-
+        this.userService = userService;
     }
 
     @Override
@@ -54,11 +54,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
     //--------------------------------------
-    @Autowired
+    /*@Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
     }
-
+*/
 
     // аутентификация inMemory
     /*@Bean
