@@ -15,7 +15,9 @@ import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.PersistenceContext;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,6 +27,10 @@ public class UserService implements UserDetailsService {
     private PasswordEncoder passwordEncoder;
     private UserRepository userRepository;
 
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    @Autowired
     public UserService(UserRepository userRepository, @Lazy PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
@@ -50,10 +56,12 @@ public class UserService implements UserDetailsService {
     //------------------------------------------------------
     @Transactional
     public User findByUserUsername(String username) {
-        return userRepository.findByUsername(username);
+        return userRepository.findUserByUsername(username);
     }
 
-    public List<User> findAll() {
+    @Transactional(readOnly = true)
+    public Collection<User> findAll()
+    {
         return userRepository.findAll();
     }
 

@@ -7,11 +7,20 @@
 <body>
 
 
-<form th:method="DELETE" th:action="@{/admin/user_delete/{id}(id=${user.id})}">
+<!--<form th:method="DELETE" th:action="@{/admin/user_delete/{id}(id=${user.id})}">
     <button type="submit" class="btn btn-primary">Delete</button>
 </form>
-<br>
+<br>-->
 
+<form th:method="POST" th:action="@{/admin/delete_user}" th:object="${userD}" >
+    <label for="id">Enter ID: </label>
+    <input type="number" th:field="*{id}" id="id">
+    <br/>
+
+
+    <input type="submit" value="Delete user!">
+</form>
+<br>
 
 
 <form th:action="@{/admin}" th:method="POST" >

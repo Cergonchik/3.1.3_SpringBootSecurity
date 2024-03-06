@@ -27,7 +27,24 @@
 
 <br>
 
-<div th:switch="${users}">
+<table border="2">All users
+    <br/>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Password</th>
+    </tr>
+    <br/>
+
+    <tr th:each="u : ${users}">
+        <td th:text="${u.setId()}"></td>
+        <td th:text="${u.getUsername()}"></td>
+        <td th:text="${u.getPassword()}"></td>
+    </tr>
+
+</table>
+
+<!--<div th:switch="${users}">
     <h2 th:case="null">No users yet!</h2>
     <div th:case="*">
         <h2>Users</h2>
@@ -51,7 +68,7 @@
         </table>
     </div>
     <p><a href="/creat_user">Add a new user</a></p>
-</div>
+</div>-->
 
 
 

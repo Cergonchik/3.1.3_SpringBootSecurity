@@ -57,26 +57,34 @@ public class AdminController {
 
     //-------------------------------------------- update
     @GetMapping("/update_user")
-    public String getWhatUpdateUser(Model model) {
-
+    public String getWhatUpdateUser(Model model, @ModelAttribute("userU") User user) {
+        model.addAttribute("userU", new User());
         return "update_user";
     }
     @PostMapping("/update_user")
-    public String getUpdateUser() {
-
-        return "redirect:/all_users";
+    public String updateUser(@ModelAttribute("userU") User user) {
+        try {
+            userService.update(user);
+        } catch (Exception e) {
+            System.out.println("No this user!");
+        }
+        return "redirect:/admin";
     }
 
     //------------------------------------- delete
     @GetMapping("/delete_user")
     public String getWhatDeleteUser(Model model) {
-        Long id = null;
-        model.addAttribute("userD",  id);
+        model.addAttribute("userD", new User());
         return "delete_user";
     }
     @PostMapping("/delete_user")
-    public String getDeleteUser(@ModelAttribute(value = "userD") Long id) {
-        userService.getDelete(id);
+    public String getDeleteUser(@ModelAttribute(value = "userD") User user) {
+
+        try {
+            userService.getDelete(user.getId());
+        } catch (Exception e) {
+            System.out.println("No this user!");
+        }
         return "redirect:/admin";
     }
 

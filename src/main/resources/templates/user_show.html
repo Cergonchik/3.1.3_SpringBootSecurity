@@ -9,12 +9,12 @@
 <table th:border="1" th:cellpadding="5">
     <tr>
         <th>Username</th>
-        <th>Email</th>
+        <th>Password</th>
         <th>Role</th>
     </tr>
     <tr th:each="user : ${user}">
         <td th:text="${user.username}">username</td>
-        <td th:text="${user.password}">email</td>
+        <td th:text="${user.password}">password</td>
         <td>
             <ul th:each="role: ${user.getRoles()}" th:text="${role.getName().replace('ROLE_', '') + ' '}">role</ul>
         </td>
