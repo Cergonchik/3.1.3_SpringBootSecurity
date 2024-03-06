@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<!--<br>
+<br>
 <form th:action="@{/admin/creat_user}" th:method="GET">
     <button type="submit">Add user </button>
 </form>
@@ -27,25 +27,31 @@
 
 <br>
 
-<table border="2">All users
-    <br/>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Surname</th>
-        <th>Password</th>
-    </tr>
-    <br/>
-
-    <tr th:each="u : ${allUsers}">
-        <td th:text="${u.getId()}"></td>
-        <td th:text="${u.getName()}"></td>
-        <td th:text="${u.getSurname()}"></td>
-        <td th:text="${u.getPassword()}"></td>
-    </tr>
-
-</table>-->
-all_users!!!!!!!
+<div th:switch="${users}">
+    <h2 th:case="null">No users yet!</h2>
+    <div th:case="*">
+        <h2>Users</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Password</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.password}"></td>
+                <td><a th:href="@{/creat_user/{id}(id=${user.id})}">Edit</a></td>
+                <td><a th:href="@{/delete_user/{id}(id=${user.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/creat_user">Add a new user</a></p>
+</div>
 
 
 

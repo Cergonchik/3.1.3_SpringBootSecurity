@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Update user</title>
@@ -30,7 +30,22 @@
 <form th:action="@{/admin/all_users}" th:method="GET" >
     <button type="submit">All user</button>
 </form>-->
+<form action="#"
+      th:action="@{/update_user/{id}(id=${user.id})}"
+      th:object="${user}"
+      method="post">
+    <label for="name">Name</label>
+    <input type="text" th:field="*{name}" id="name" placeholder="Name">
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+    <label for="email">Email</label>
+    <input type="text" th:field="*{email}" id="email" placeholder="Email">
+    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+    <input type="submit" value="Update User">
+</form>
 
+<form th:action="@{/logout}" th:method="GET" >
+    <button type="submit">Logout</button>
+</form>
 
 </body>
 </html>

@@ -17,47 +17,70 @@ import ru.kata.spring.boot_security.demo.model.User;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-
 public class UserService implements UserDetailsService {
     private PasswordEncoder passwordEncoder;
     private UserRepository userRepository;
 
-    public UserService( UserRepository userRepository,@Lazy PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, @Lazy PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
     }
 
-    public User findByUserUsername(String username) {
-        return userRepository.findByUsername(username);
-    }
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = findByUserUsername(username);
-        if(user == null) {
+        if (user == null) {
             throw new UsernameNotFoundException("No this user");
         }
 
         return new org.springframework.security.core.userdetails.User(user.getUsername(),
-                user.getPassword(),mapRolesToAuthorities(user.getRoles()));
+                user.getPassword(), mapRolesToAuthorities(user.getRoles()));
     }
 
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getAuthority())).collect(Collectors.toList());
     }
 
-//------------------------------------------------------
+    //------------------------------------------------------
+    @Transactional
+    public User findByUserUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    public User getById(Long id) {
+        return userRepository.getById(id);
+    }
 
 
+    public void save(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
+    }
 
+    public void getDelete(Long userId) {
+        userRepository.deleteById(userId);
+    }
 
-//-------------------------------------------------------
-    @Autowired
+    @Transactional
+    public void update(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
+    }
+
+    //-------------------------------------------------------
+    /*@Autowired
     public void setUserRepository(UserRepository userRepository) {
         this.userRepository = userRepository;
-    }
+    }*/
 }

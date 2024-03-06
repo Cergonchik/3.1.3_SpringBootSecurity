@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Delete user</title>
@@ -7,19 +7,20 @@
 <body>
 
 
-<!--<form th:method="POST" th:action="@{/admin/delete_user}" th:object="${userD}" >
-    <label for="id">Enter ID: </label>
-    <input type="number" th:field="*{id}" id="id">
-    <br/>
-
-
-    <input type="submit" value="Delete user!">
+<form th:method="DELETE" th:action="@{/admin/user_delete/{id}(id=${user.id})}">
+    <button type="submit" class="btn btn-primary">Delete</button>
 </form>
 <br>
 
-<form th:action="@{/admin/all_users}" th:method="GET" >
+
+
+<form th:action="@{/admin}" th:method="POST" >
     <button type="submit">All user</button>
-</form>-->
+</form>
+
+<form th:action="@{/logout}" th:method="GET" >
+    <button type="submit">Logout</button>
+</form>
 
 </body>
 </html>

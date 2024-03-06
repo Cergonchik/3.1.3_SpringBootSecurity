@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+<body>
+
+<table th:border="1" th:cellpadding="5">
+    <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Role</th>
+    </tr>
+    <tr th:each="user : ${user}">
+        <td th:text="${user.username}">username</td>
+        <td th:text="${user.password}">email</td>
+        <td>
+            <ul th:each="role: ${user.getRoles()}" th:text="${role.getName().replace('ROLE_', '') + ' '}">role</ul>
+        </td>
+    </tr>
+</table>
+<br>
+
+<form th:action="@{/logout}" th:method="GET" >
+    <button type="submit">Logout</button>
+</form>
+
+</body>
+</html>

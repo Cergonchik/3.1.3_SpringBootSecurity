@@ -7,6 +7,8 @@ import ru.kata.spring.boot_security.demo.dao.RoleRepository;
 import ru.kata.spring.boot_security.demo.model.Role;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 @Service
 public class RoleService {
@@ -18,8 +20,10 @@ public class RoleService {
     }
 
     @Transactional(readOnly = true)
-    public Collection<Role> getAll() {
-        return (Collection<Role>) roleRepository.findAll();
+    public List<Role> getAll() {
+        return roleRepository.findAll();
     }
+
+
 
 }
