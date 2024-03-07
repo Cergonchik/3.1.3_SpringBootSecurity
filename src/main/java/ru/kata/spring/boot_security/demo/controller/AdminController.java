@@ -19,7 +19,6 @@ import java.util.Collection;
 import java.util.List;
 
 @Controller
-@RequestMapping("/admin")
 public class AdminController {
     private RoleService roleService;
     private UserService userService;
@@ -41,14 +40,14 @@ public class AdminController {
     //------------------------------  creat
 
 
-    @GetMapping("/creat_user")
+    @GetMapping("/admin/creat_user")
     public String getCreatUser(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("role", roleService.getAll());
         return "creat_user";
     }
 
-    @PostMapping("/creat_user")
+    @PostMapping("/admin/creat_user")
     public String getAddUser(@ModelAttribute(value = "user") User user) {
         userService.save(user);
         return "redirect:/admin";
@@ -56,12 +55,12 @@ public class AdminController {
 
 
     //-------------------------------------------- update
-    @GetMapping("/update_user")
+    @GetMapping("/admin/update_user")
     public String getWhatUpdateUser(Model model, @ModelAttribute("userU") User user) {
         model.addAttribute("userU", new User());
         return "update_user";
     }
-    @PostMapping("/update_user")
+    @PostMapping("/admin/update_user")
     public String updateUser(@ModelAttribute("userU") User user) {
         try {
             userService.update(user);
@@ -72,12 +71,12 @@ public class AdminController {
     }
 
     //------------------------------------- delete
-    @GetMapping("/delete_user")
+    @GetMapping("/admin/delete_user")
     public String getWhatDeleteUser(Model model) {
         model.addAttribute("userD", new User());
         return "delete_user";
     }
-    @PostMapping("/delete_user")
+    @PostMapping("/admin/delete_user")
     public String getDeleteUser(@ModelAttribute(value = "userD") User user) {
 
         try {

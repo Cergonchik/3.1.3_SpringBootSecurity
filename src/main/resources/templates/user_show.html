@@ -6,21 +6,22 @@
 </head>
 <body>
 
-<table th:border="1" th:cellpadding="5">
+<table border="2">All users
+    <br/>
     <tr>
-        <th>Username</th>
+        <th>ID</th>
+        <th>Name</th>
         <th>Password</th>
-        <th>Role</th>
     </tr>
-    <tr th:each="user : ${user}">
-        <td th:text="${user.username}">username</td>
-        <td th:text="${user.password}">password</td>
-        <td>
-            <ul th:each="role: ${user.getRoles()}" th:text="${role.getName().replace('ROLE_', '') + ' '}">role</ul>
-        </td>
+    <br/>
+
+    <tr th:each="u : ${user}">
+        <td th:text="${u.getId()}"></td>
+        <td th:text="${u.getUsername()}"></td>
+        <td th:text="${u.getPassword()}"></td>
     </tr>
+
 </table>
-<br>
 
 <form th:action="@{/logout}" th:method="GET" >
     <button type="submit">Logout</button>
