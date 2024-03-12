@@ -1,10 +1,14 @@
 package ru.kata.spring.boot_security.demo.model;
 
 
+import org.hibernate.annotations.Parent;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Set;
 
@@ -16,10 +20,15 @@ import java.util.Set;
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Pattern(regexp = "[0-9]")
     @Column(name = "id")
     private Long id;
+    @NotNull
+    @Pattern(regexp = "[a-zA-Z0-9]")
     @Column(name = "username")
     private String username;
+    @NotNull
+    @Size(min = 3)
     @Column(name = "password")
     private String password;
     @ManyToMany(fetch = FetchType.LAZY)

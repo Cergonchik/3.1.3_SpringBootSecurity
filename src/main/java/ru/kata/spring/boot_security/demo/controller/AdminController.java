@@ -30,15 +30,12 @@ public class AdminController {
 
     }
 
-
-
     @GetMapping("/admin")
     public String getAllUsers(Model model) {
         model.addAttribute("users", userService.findAll());
         return "all_users";
     }
     //------------------------------  creat
-
 
     @GetMapping("/admin/creat_user")
     public String getCreatUser(Model model) {
@@ -52,7 +49,6 @@ public class AdminController {
         userService.save(user);
         return "redirect:/admin";
     }
-
 
     //-------------------------------------------- update
     @GetMapping("/admin/update_user")
@@ -86,7 +82,4 @@ public class AdminController {
         }
         return "redirect:/admin";
     }
-
-
-
 }

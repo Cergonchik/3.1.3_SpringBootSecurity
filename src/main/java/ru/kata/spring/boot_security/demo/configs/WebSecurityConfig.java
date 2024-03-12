@@ -53,32 +53,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-    //--------------------------------------
-    /*@Autowired
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
-*/
-
-    // аутентификация inMemory
-    /*@Bean
-    @Override
-    public UserDetailsService userDetailsService() {
-        UserDetails user =
-                User.withDefaultPasswordEncoder()
-                        .username("user")
-                        .password("user")
-                        .roles("USER")
-                        .build();
-
-        UserDetails admin =
-                User.withDefaultPasswordEncoder()
-                        .username("admin")
-                        .password("admin")
-                        .roles("ADMIN")
-                        .build();
-        return new InMemoryUserDetailsManager(user, admin);
-    }
-*/
 
 }
